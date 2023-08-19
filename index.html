@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>timing function</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.head{
+
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+
+}
+.time{
+font-size:20px;
+}
+.time span{
+font-family: 'Tektur', cursive;
+font-size:25px;
+font-weight:500px;
+color:red;
+}
+#Day{
+color:red;
+font-size:20px;
+text-transform:uppercase;
+font-family:'Orbitron', sans-serif;
+}
+#zoneTime{
+color:darkcyan;
+font-weight:500;
+font-family: 'Bebas Neue', sans-serif;
+}
+</style>
+</head>
+<body>
+<div class="head">
+<div>
+	<span class="time">Hours:<span id="hrs">00</span></span>
+	<span id="zoneTime"></span>
+	<span class="time">Minutes:<span id="min">00</span></span>
+	<span class="time">Seconds:<span id="sec">00</span></span>
+	
+	<span >Day:</span><span id="Day"></span>
+</div>
+</div>
+<script>
+
+		function clockFun(){
+			
+			
+			let currentHrs=document.getElementById("hrs");
+			currentZone=document.getElementById("zoneTime");
+			currentMin =document.getElementById("min");
+	        currentSec =document.getElementById("sec");
+			currentDay =document.getElementById("Day");
+			
+			//get date
+			let date   = new Date();
+			getHrs = date.getHours();
+			getMin = date.getMinutes();
+			getSec = date.getSeconds();
+			getDay=date.toString().split(" ")[0];
+			
+			var zone=getHrs>=12 ? "PM":"AM";
+			
+			getHrs=getHrs? getHrs:12;
+			
+			getHrs>12?getHrs=getHrs-12:"";
+			if (getSec<10){
+				getSec="0"+getSec;
+			}
+			if (getMin<10){
+				getMin="0"+getMin;
+			}
+			if (getHrs<10){
+				getHrs="0"+getHrs;
+			}
+			if (getDay==="Mon"){
+				getDay=getDay+"Day";
+			}
+			else if (getDay==="Tue"){
+				getDay=getDay+"sDay";
+			}
+			else if (getDay==="Wed"){
+				getDay=getDay+"nesDay";
+			}
+			else if (getDay==="Thu"){
+				getDay=getDay+"rsDay";
+			}
+			else if (getDay==="Fri"){
+				getDay=getDay+"Day";
+			}
+			else if (getDay==="Sat"){
+				getDay=getDay+"urDay";
+			}
+			else if (getDay==="Sun"){
+				getDay=getDay+"Day";
+			}
+	
+			currentHrs.innerHTML=getHrs;
+			currentZone.innerHTML=zone;
+			currentMin.innerHTML=getMin;
+			currentSec.innerHTML=getSec;	
+			currentDay.innerHTML=getDay;
+		}
+		//Time update
+		setInterval(clockFun, 1000)
+		
+</script>
+</body>
+</html>
